@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "language": "zh",
+  "task_id": "02-repair-bay",
+  "task_version": 1,
+  "profile_id": "cold-warm-focus",
+  "profile_version": 1,
+  "theme": "轨道维修舱夜班",
+  "audience": "叙事插画读者",
+  "intent": "让观众先读懂焦点，再感受环境尺度。",
+  "delivery": {
+    "aspect_ratio": "4:5",
+    "count": 1,
+    "exact_text": []
+  },
+  "style": [
+    {
+      "id": "S-01",
+      "priority": "must",
+      "text": "让蓝灰维修舱以大面积低明度冷色衬托仪表与受光的手套，最亮的暖色集中在焦点附近。"
+    },
+    {
+      "id": "S-02",
+      "priority": "must",
+      "text": "保持仪表与受光的手套的关键形体边缘清楚，将远处轮廓柔化或融入背景。"
+    }
+  ],
+  "character": [
+    {
+      "id": "T-01",
+      "priority": "must",
+      "text": "一名技师戴灰色手套检查仪表。"
+    }
+  ],
+  "environment": [
+    {
+      "id": "S-03",
+      "priority": "should",
+      "text": "让暖光随离开光源的距离迅速衰减，仅照亮相邻表面。"
+    }
+  ],
+  "narrative": [
+    {
+      "id": "T-02",
+      "priority": "should",
+      "text": "安排观众先看焦点，再读到环境尺度。"
+    }
+  ],
+  "mood": [],
+  "technical": []
+}

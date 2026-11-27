@@ -1,0 +1,27 @@
+{
+  "source_repo": "qixing22/Infographic-Design-",
+  "source_commit": "2436ee646d3cbb345c40def53a516b039992e958",
+  "cases": {
+    "CASE-17": {
+      "directory": "02-信息图形类型案例/16-三维型-3D/案例/CASE-17-现代肉鸡产业链三维信息图",
+      "analysis": "分析.md",
+      "data": "基础数据.csv",
+      "image": "1.22.jpg",
+      "topic": {
+        "zh": "肉鸡产业链的六个可辨识环节",
+        "en": "Six legible stages of the poultry supply chain"
+      },
+      "records": [
+        "17-01",
+        "17-02",
+        "17-04",
+        "17-05",
+        "17-06",
+        "17-07"
+      ],
+      "omissions": {
+        "17-03": "源表标记原图字样待核验。"
+      }
+    }
+  }
+}

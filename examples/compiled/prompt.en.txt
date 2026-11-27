@@ -1,0 +1,19 @@
+Theme: Night shift in an orbital repair bay
+
+Audience: Narrative illustration readers
+
+Narrative intent: Make the focal detail legible first, then reveal the scale of the setting.
+
+Use the broad, dim, cool-toned blue-gray repair bay to frame the instrument and illuminated glove. Confine the brightest warm tones to that focal area.
+
+Keep the key edges of the instrument and illuminated glove clear. Soften distant contours or let them merge into the background.
+
+Show one technician examining the instrument while wearing gray gloves.
+
+Let warm light fall off quickly with distance from the source, illuminating only adjacent surfaces.
+
+Lead the viewer from the focal area to the scale of the setting.
+
+Aspect ratio: 4:5
+
+Output count: 1

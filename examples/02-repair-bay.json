@@ -1,0 +1,278 @@
+{
+  "schema_version": "1.0",
+  "style_profile": {
+    "id": "cold-warm-focus",
+    "version": 1,
+    "name": {
+      "zh": "冷暗环境与暖亮焦点",
+      "en": "Cool surroundings, warm focus"
+    },
+    "scope": "虚构演示档案，用于低照度或可控照明图像。未进行图像生成或人工验收。",
+    "references": [
+      {
+        "id": "REF-01",
+        "source": "假想样图：窄巷中的提灯行人",
+        "roles": [
+          {
+            "role": "style_reference",
+            "scope": "仅演示色光与边缘分析"
+          }
+        ]
+      },
+      {
+        "id": "REF-02",
+        "source": "假想样图：夜景中的检修人员",
+        "roles": [
+          {
+            "role": "style_reference",
+            "scope": "仅演示色光与边缘分析"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "id": "E-01",
+        "reference_id": "REF-01",
+        "region": "提灯与街巷",
+        "kind": "observation",
+        "description": "假想示例：暖亮区域集中于提灯和手，冷暗街巷面积更广。"
+      },
+      {
+        "id": "E-02",
+        "reference_id": "REF-02",
+        "region": "仪表与背景",
+        "kind": "observation",
+        "description": "假想示例：仪表照亮的手和袖口清晰，远景结构边缘柔化。"
+      },
+      {
+        "id": "E-03",
+        "reference_id": "REF-01",
+        "region": "手边与远墙",
+        "kind": "observation",
+        "description": "假想示例：人物手边轮廓清楚，远墙接缝逐渐消隐。"
+      },
+      {
+        "id": "E-04",
+        "reference_id": "REF-02",
+        "region": "灯面与设备外壳",
+        "kind": "observation",
+        "description": "假想示例：光源紧邻物体表面，暖光在边缘较近的位置衰减。"
+      }
+    ],
+    "modules": {
+      "A1": "pending",
+      "B1": "active",
+      "B2": "active",
+      "B3": "pending",
+      "B4": "pending",
+      "C1": "pending",
+      "C2": "active",
+      "C3": "pending",
+      "C4": "pending",
+      "D1": "active",
+      "E1": "pending",
+      "E2": "pending",
+      "E3": "pending"
+    },
+    "slots": {
+      "focal_area": {
+        "zh": "第一视觉焦点",
+        "en": "The primary focal area"
+      },
+      "surroundings": {
+        "zh": "承担衬托的环境区域",
+        "en": "The surrounding area that frames the subject"
+      }
+    },
+    "rules": [
+      {
+        "id": "S-01",
+        "module": "B1",
+        "category": "style",
+        "variability": "core",
+        "priority": "must",
+        "verification": "candidate",
+        "evidence_ids": [
+          "E-01",
+          "E-02"
+        ],
+        "condition": {
+          "zh": "档案适用的低照度或可控照明场景。",
+          "en": "Low-light or controlled-light settings in the profile scope."
+        },
+        "allowed_changes": [
+          {
+            "zh": "主体、环境、暖光来源。",
+            "en": "Subject, surroundings and source of warm light."
+          }
+        ],
+        "requires": [],
+        "excludes": [],
+        "section": "style",
+        "instruction": {
+          "zh": "让{{surroundings}}以大面积低明度冷色衬托{{focal_area}}，最亮的暖色集中在焦点附近。",
+          "en": "Use the broad, dim, cool-toned {{surroundings}} to frame {{focal_area}}. Confine the brightest warm tones to that focal area."
+        },
+        "check": {
+          "zh": "在缩略图中核对第一焦点是否落在{{focal_area}}，并检查背景有无竞争亮点。",
+          "en": "At thumbnail size, verify that {{focal_area}} draws attention first and that the background has no competing highlight."
+        }
+      },
+      {
+        "id": "S-02",
+        "module": "C2",
+        "category": "style",
+        "variability": "core",
+        "priority": "must",
+        "verification": "candidate",
+        "evidence_ids": [
+          "E-02",
+          "E-03"
+        ],
+        "condition": {
+          "zh": "画面有焦点与远处环境。",
+          "en": "The composition includes a focal area and a distant setting."
+        },
+        "allowed_changes": [
+          {
+            "zh": "媒介、边缘具体形状。",
+            "en": "Medium and specific edge shapes."
+          }
+        ],
+        "requires": [],
+        "excludes": [],
+        "section": "style",
+        "instruction": {
+          "zh": "保持{{focal_area}}的关键形体边缘清楚，将远处轮廓柔化或融入背景。",
+          "en": "Keep the key edges of {{focal_area}} clear. Soften distant contours or let them merge into the background."
+        },
+        "check": {
+          "zh": "比较焦点与远景边缘的清晰度。",
+          "en": "Compare edge definition at the focal area and in the distance."
+        }
+      },
+      {
+        "id": "S-03",
+        "module": "B2",
+        "category": "style",
+        "variability": "conditional",
+        "priority": "should",
+        "verification": "candidate",
+        "evidence_ids": [
+          "E-01",
+          "E-04"
+        ],
+        "condition": {
+          "zh": "画面有紧邻主体的可见小光源。",
+          "en": "A small, visible light source is close to the subject."
+        },
+        "allowed_changes": [
+          {
+            "zh": "光源造型和位置。",
+            "en": "Source shape and placement."
+          }
+        ],
+        "requires": [
+          "S-01"
+        ],
+        "excludes": [],
+        "section": "environment",
+        "instruction": {
+          "zh": "让暖光随离开光源的距离迅速衰减，仅照亮相邻表面。",
+          "en": "Let warm light fall off quickly with distance from the source, illuminating only adjacent surfaces."
+        },
+        "check": {
+          "zh": "检查暖光是否明显局限于邻近表面。",
+          "en": "Check that warm illumination is visibly confined to nearby surfaces."
+        }
+      }
+    ]
+  },
+  "image_task": {
+    "id": "02-repair-bay",
+    "version": 1,
+    "profile_id": "cold-warm-focus",
+    "profile_version": 1,
+    "mode": "expand",
+    "scope_decision": {
+      "status": "supported",
+      "reason": "本示例采用低照度或可控照明。"
+    },
+    "theme": {
+      "zh": "轨道维修舱夜班",
+      "en": "Night shift in an orbital repair bay"
+    },
+    "audience": {
+      "zh": "叙事插画读者",
+      "en": "Narrative illustration readers"
+    },
+    "intent": {
+      "zh": "让观众先读懂焦点，再感受环境尺度。",
+      "en": "Make the focal detail legible first, then reveal the scale of the setting."
+    },
+    "bindings": {
+      "focal_area": {
+        "zh": "仪表与受光的手套",
+        "en": "the instrument and illuminated glove"
+      },
+      "surroundings": {
+        "zh": "蓝灰维修舱",
+        "en": "blue-gray repair bay"
+      }
+    },
+    "selected_rule_ids": [
+      "S-03"
+    ],
+    "condition_decisions": {
+      "S-03": {
+        "enabled": true,
+        "reason": "画面安排紧邻焦点的小光源。"
+      }
+    },
+    "requirements": [
+      {
+        "id": "T-01",
+        "category": "content",
+        "priority": "must",
+        "section": "character",
+        "instruction": {
+          "zh": "一名技师戴灰色手套检查仪表。",
+          "en": "Show one technician examining the instrument while wearing gray gloves."
+        },
+        "check": {
+          "zh": "核对主体数量和动作或状态。",
+          "en": "Verify subject count and action or state."
+        }
+      },
+      {
+        "id": "T-02",
+        "category": "presentation",
+        "priority": "should",
+        "section": "narrative",
+        "instruction": {
+          "zh": "安排观众先看焦点，再读到环境尺度。",
+          "en": "Lead the viewer from the focal area to the scale of the setting."
+        },
+        "check": {
+          "zh": "进行盲读并记录第一、第二视点。",
+          "en": "Ask viewers to record what they notice first and second."
+        }
+      }
+    ],
+    "delivery": {
+      "aspect_ratio": "4:5",
+      "count": 1,
+      "exact_text": []
+    },
+    "conflicts": []
+  },
+  "image_review": {
+    "task_id": "02-repair-bay",
+    "task_version": 1,
+    "output_id": null,
+    "output_version": null,
+    "phase": "not_generated",
+    "checks": []
+  }
+}

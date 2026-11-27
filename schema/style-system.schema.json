@@ -1,0 +1,1012 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Style System 1.0",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "style_profile": {
+      "$ref": "#/$defs/style_profile"
+    },
+    "image_task": {
+      "$ref": "#/$defs/image_task"
+    },
+    "image_review": {
+      "$ref": "#/$defs/image_review"
+    }
+  },
+  "required": [
+    "schema_version",
+    "style_profile"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "bilingual": {
+      "type": "object",
+      "properties": {
+        "zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "en": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "zh",
+        "en"
+      ],
+      "additionalProperties": false
+    },
+    "reference": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "enum": [
+                  "style_reference",
+                  "content_reference",
+                  "layout_reference",
+                  "system_diagram",
+                  "current_output",
+                  "task_brief"
+                ]
+              },
+              "scope": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "role",
+              "scope"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "roles"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "reference_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "region": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "observation",
+            "inference"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "reference_id",
+        "region",
+        "kind",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "rule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "category": {
+          "enum": [
+            "style",
+            "content",
+            "presentation"
+          ]
+        },
+        "priority": {
+          "enum": [
+            "must",
+            "should",
+            "may"
+          ]
+        },
+        "section": {
+          "enum": [
+            "style",
+            "character",
+            "environment",
+            "narrative",
+            "mood",
+            "technical"
+          ]
+        },
+        "instruction": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "check": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "module": {
+          "enum": [
+            "A1",
+            "B1",
+            "B2",
+            "B3",
+            "B4",
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "D1",
+            "E1",
+            "E2",
+            "E3"
+          ]
+        },
+        "variability": {
+          "enum": [
+            "core",
+            "conditional",
+            "free"
+          ]
+        },
+        "verification": {
+          "enum": [
+            "candidate",
+            "validated"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "condition": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "allowed_changes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bilingual"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "requires": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "excludes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "category",
+        "priority",
+        "section",
+        "instruction",
+        "check",
+        "module",
+        "variability",
+        "verification",
+        "evidence_ids",
+        "condition",
+        "allowed_changes",
+        "requires",
+        "excludes"
+      ],
+      "additionalProperties": false
+    },
+    "lock": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "category": {
+          "enum": [
+            "style",
+            "content",
+            "presentation"
+          ]
+        },
+        "priority": {
+          "enum": [
+            "must",
+            "should",
+            "may"
+          ]
+        },
+        "section": {
+          "enum": [
+            "style",
+            "character",
+            "environment",
+            "narrative",
+            "mood",
+            "technical"
+          ]
+        },
+        "instruction": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "check": {
+          "$ref": "#/$defs/bilingual"
+        }
+      },
+      "required": [
+        "id",
+        "category",
+        "priority",
+        "section",
+        "instruction",
+        "check"
+      ],
+      "additionalProperties": false
+    },
+    "delivery": {
+      "type": "object",
+      "properties": {
+        "aspect_ratio": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[1-9][0-9]*:[1-9][0-9]*$"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "exact_text": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "aspect_ratio",
+        "count",
+        "exact_text"
+      ],
+      "additionalProperties": false
+    },
+    "frame": {
+      "type": "object",
+      "properties": {
+        "frame_number": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "narrative_function": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "relation_to_previous": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "shot_type": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "angle": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "focus": {
+          "$ref": "#/$defs/bilingual"
+        }
+      },
+      "required": [
+        "frame_number",
+        "narrative_function",
+        "relation_to_previous",
+        "shot_type",
+        "angle",
+        "focus"
+      ],
+      "additionalProperties": false
+    },
+    "review_check": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "result": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "result"
+      ],
+      "additionalProperties": false
+    },
+    "prompt_clause": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "priority": {
+          "enum": [
+            "must",
+            "should",
+            "may"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "priority",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "style_profile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "name": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reference"
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        },
+        "modules": {
+          "type": "object",
+          "properties": {
+            "A1": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            },
+            "B1": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            },
+            "B2": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            },
+            "B3": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            },
+            "B4": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            },
+            "C1": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            },
+            "C2": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            },
+            "C3": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            },
+            "C4": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            },
+            "D1": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            },
+            "E1": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            },
+            "E2": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            },
+            "E3": {
+              "enum": [
+                "active",
+                "inactive",
+                "not_applicable",
+                "pending"
+              ]
+            }
+          },
+          "required": [
+            "A1",
+            "B1",
+            "B2",
+            "B3",
+            "B4",
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "D1",
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "additionalProperties": false
+        },
+        "slots": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/bilingual"
+          }
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rule"
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        },
+        "parent_profile": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "id",
+            "version"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "name",
+        "scope",
+        "references",
+        "evidence",
+        "modules",
+        "slots",
+        "rules"
+      ],
+      "additionalProperties": false
+    },
+    "image_task": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "profile_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "profile_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mode": {
+          "enum": [
+            "transfer",
+            "expand",
+            "change"
+          ]
+        },
+        "scope_decision": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "supported",
+                "uncertain",
+                "outside"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "status",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        "theme": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "audience": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "intent": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "bindings": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/bilingual"
+          }
+        },
+        "selected_rule_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "condition_decisions": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "enabled",
+              "reason"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "requirements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/lock"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "delivery": {
+          "$ref": "#/$defs/delivery"
+        },
+        "conflicts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+                },
+                "minItems": 2,
+                "uniqueItems": true
+              },
+              "blocking": {
+                "type": "boolean"
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "ids",
+              "blocking",
+              "reason"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "storyboard": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/frame"
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "profile_id",
+        "profile_version",
+        "mode",
+        "scope_decision",
+        "theme",
+        "audience",
+        "intent",
+        "bindings",
+        "selected_rule_ids",
+        "condition_decisions",
+        "requirements",
+        "delivery",
+        "conflicts"
+      ],
+      "additionalProperties": false
+    },
+    "image_review": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "task_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "output_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "output_version": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "phase": {
+          "enum": [
+            "not_generated",
+            "unreviewed",
+            "reviewed"
+          ]
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/review_check"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "task_id",
+        "task_version",
+        "output_id",
+        "output_version",
+        "phase",
+        "checks"
+      ],
+      "additionalProperties": false
+    },
+    "generation_prompt": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "language": {
+          "enum": [
+            "zh",
+            "en"
+          ]
+        },
+        "task_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "task_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "profile_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+        },
+        "profile_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "theme": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 1
+        },
+        "intent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "delivery": {
+          "$ref": "#/$defs/delivery"
+        },
+        "style": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/prompt_clause"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "character": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/prompt_clause"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "environment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/prompt_clause"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "narrative": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/prompt_clause"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "mood": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/prompt_clause"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "technical": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/prompt_clause"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "storyboard": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "frame_number": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "narrative_function": {
+                "type": "string",
+                "minLength": 1
+              },
+              "relation_to_previous": {
+                "type": "string",
+                "minLength": 1
+              },
+              "shot_type": {
+                "type": "string",
+                "minLength": 1
+              },
+              "angle": {
+                "type": "string",
+                "minLength": 1
+              },
+              "focus": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "frame_number",
+              "narrative_function",
+              "relation_to_previous",
+              "shot_type",
+              "angle",
+              "focus"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "language",
+        "task_id",
+        "task_version",
+        "profile_id",
+        "profile_version",
+        "theme",
+        "audience",
+        "intent",
+        "delivery",
+        "style",
+        "character",
+        "environment",
+        "narrative",
+        "mood",
+        "technical"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

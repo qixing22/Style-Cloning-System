@@ -1,0 +1,44 @@
+{
+  "profile_id": "cold-warm-focus",
+  "profile_version": 1,
+  "task_id": "02-repair-bay",
+  "task_version": 1,
+  "mandatory_ids": [
+    "S-01",
+    "S-02",
+    "T-01"
+  ],
+  "rule_coverage": {
+    "prompt.zh.json": [
+      "S-01",
+      "S-02",
+      "S-03",
+      "T-01",
+      "T-02"
+    ],
+    "prompt.en.json": [
+      "S-01",
+      "S-02",
+      "S-03",
+      "T-01",
+      "T-02"
+    ],
+    "prompt.zh.short.txt": [
+      "S-01",
+      "S-02",
+      "T-01"
+    ],
+    "prompt.en.txt": [
+      "S-01",
+      "S-02",
+      "T-01",
+      "S-03",
+      "T-02"
+    ]
+  },
+  "delivery": {
+    "aspect_ratio": "4:5",
+    "count": 1,
+    "exact_text": []
+  }
+}

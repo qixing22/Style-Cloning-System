@@ -1,0 +1,285 @@
+{
+  "schema_version": "1.0",
+  "style_profile": {
+    "id": "voxel-editorial",
+    "version": 1,
+    "name": {
+      "zh": "暖红等轴测方块信息图",
+      "en": "Warm-red isometric voxel infographic"
+    },
+    "scope": "作品级风格档案，依据会话中的动物生物量参考图。适用于分组、图鉴、规模比较及过程类编辑信息图。定量几何须按数据核验；定性或顺序信息使用等体量层。",
+    "references": [
+      {
+        "id": "REF-01",
+        "source": "会话中提供的 Biomass of Life 海报，原图与出处未在仓库归档。以下证据为会话逐图观察记录。",
+        "roles": [
+          {
+            "role": "style_reference",
+            "scope": "纸面、体素组织、光色、排版、微雕与标注。"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "id": "E-01",
+        "reference_id": "REF-01",
+        "region": "全幅",
+        "kind": "observation",
+        "description": "立式纸面上有一条集中的分层三维堆栈，两旁留出注释区域。"
+      },
+      {
+        "id": "E-02",
+        "reference_id": "REF-01",
+        "region": "堆栈左、右切面",
+        "kind": "observation",
+        "description": "同一体块左侧较暗、右侧较亮。最上层偏深红，最低层偏浅杏。"
+      },
+      {
+        "id": "E-03",
+        "reference_id": "REF-01",
+        "region": "两侧注释",
+        "kind": "observation",
+        "description": "细折线和小端点连接数据层与对侧标签，标签先显示色块数值。"
+      },
+      {
+        "id": "E-04",
+        "reference_id": "REF-01",
+        "region": "页首和底纸",
+        "kind": "observation",
+        "description": "黑色高对比标题与灰色引题分层，右侧短块文字有红色竖线，纸底近暖白。"
+      },
+      {
+        "id": "E-05",
+        "reference_id": "REF-01",
+        "region": "立方单元边缘",
+        "kind": "observation",
+        "description": "动物微雕附在层边，与承载体块同色系，占局部空间。"
+      },
+      {
+        "id": "E-06",
+        "reference_id": "REF-01",
+        "region": "顶部图例与层体积",
+        "kind": "observation",
+        "description": "图例定义每个单位立方体，类别值随堆栈高度向下递减。"
+      }
+    ],
+    "modules": {
+      "A1": "active",
+      "B1": "active",
+      "B2": "active",
+      "B3": "active",
+      "B4": "active",
+      "C1": "active",
+      "C2": "pending",
+      "C3": "pending",
+      "C4": "active",
+      "D1": "pending",
+      "E1": "active",
+      "E2": "active",
+      "E3": "pending"
+    },
+    "slots": {
+      "layer_subjects": {
+        "zh": "各层对应的小型对象标记。",
+        "en": "Small objects that identify the layers."
+      }
+    },
+    "rules": [
+      {
+        "id": "R01",
+        "module": "B3",
+        "category": "style",
+        "section": "style",
+        "variability": "core",
+        "priority": "must",
+        "verification": "candidate",
+        "evidence_ids": [
+          "E-01"
+        ],
+        "condition": {
+          "zh": "档案适用范围内。",
+          "en": "Within the profile scope."
+        },
+        "allowed_changes": [
+          {
+            "zh": "层数、具体承载物、层间距离。",
+            "en": "Layer count, objects and gap sizes."
+          }
+        ],
+        "requires": [],
+        "excludes": [],
+        "instruction": {
+          "zh": "以等轴测方块网格形成中央纵向爆炸堆栈，层层悬浮，两侧留出稳定的标注空间。",
+          "en": "Build a central exploded vertical stack from isometric voxel blocks and reserve both side gutters for callouts."
+        },
+        "check": {
+          "zh": "缩略图可读出中央堆栈、分层间隙与两侧标注区。",
+          "en": "Verify the central stack, gaps and callout gutters at thumbnail size."
+        }
+      },
+      {
+        "id": "R02",
+        "module": "B1",
+        "category": "style",
+        "section": "style",
+        "variability": "core",
+        "priority": "must",
+        "verification": "candidate",
+        "evidence_ids": [
+          "E-02"
+        ],
+        "condition": {
+          "zh": "档案适用范围内。",
+          "en": "Within the profile scope."
+        },
+        "allowed_changes": [
+          {
+            "zh": "过渡步数、局部色相和光源强度。",
+            "en": "Number of tonal steps, local hues and light intensity."
+          }
+        ],
+        "requires": [],
+        "excludes": [],
+        "instruction": {
+          "zh": "沿堆栈由深氧化红和砖红过渡至陶橙与浅杏；统一斜光让左侧较暗、右侧较亮。",
+          "en": "Run a deep oxide-red to brick-red, terracotta and pale-apricot progression down the stack. Use consistent angled light with darker left and lighter right faces."
+        },
+        "check": {
+          "zh": "检查明暗方向、色阶顺序与浅色层的边界。",
+          "en": "Check light direction, color progression and pale-layer boundaries."
+        }
+      },
+      {
+        "id": "R03",
+        "module": "E2",
+        "category": "style",
+        "section": "technical",
+        "variability": "core",
+        "priority": "must",
+        "verification": "candidate",
+        "evidence_ids": [
+          "E-03"
+        ],
+        "condition": {
+          "zh": "档案适用范围内。",
+          "en": "Within the profile scope."
+        },
+        "allowed_changes": [
+          {
+            "zh": "标注起始侧、标签长度和次要说明。",
+            "en": "Starting side, label length and optional notes."
+          }
+        ],
+        "requires": [],
+        "excludes": [],
+        "instruction": {
+          "zh": "把短标签分布在两侧，用细折线和小端点一一连接本层，避免交叉或误指。",
+          "en": "Distribute short labels across the side gutters. Use thin elbow leaders and small endpoints to connect each label to its own layer without crossing."
+        },
+        "check": {
+          "zh": "逐条追踪标签与层关系。",
+          "en": "Trace each label to its intended layer."
+        }
+      },
+      {
+        "id": "R04",
+        "module": "A1",
+        "category": "style",
+        "section": "style",
+        "variability": "core",
+        "priority": "must",
+        "verification": "candidate",
+        "evidence_ids": [
+          "E-04"
+        ],
+        "condition": {
+          "zh": "档案适用范围内。",
+          "en": "Within the profile scope."
+        },
+        "allowed_changes": [
+          {
+            "zh": "题名、语种、标题长度。",
+            "en": "Title, language and title length."
+          }
+        ],
+        "requires": [],
+        "excludes": [],
+        "instruction": {
+          "zh": "以暖白细纸纹支撑黑色高对比衬线标题、低对比引题和短锈红竖线。",
+          "en": "Set a high-contrast black serif headline, subdued kicker and short rust-red rule on subtly textured warm-white paper."
+        },
+        "check": {
+          "zh": "标题先读，纸纹与引题保持从属。",
+          "en": "Verify that the headline reads first and the kicker and paper texture remain subordinate."
+        }
+      },
+      {
+        "id": "R05",
+        "module": "C1",
+        "category": "style",
+        "section": "character",
+        "variability": "core",
+        "priority": "must",
+        "verification": "candidate",
+        "evidence_ids": [
+          "E-05"
+        ],
+        "condition": {
+          "zh": "档案适用范围内。",
+          "en": "Within the profile scope."
+        },
+        "allowed_changes": [
+          {
+            "zh": "对象、姿态和附着位置。",
+            "en": "Objects, poses and attachment positions."
+          }
+        ],
+        "requires": [],
+        "excludes": [],
+        "instruction": {
+          "zh": "将{{layer_subjects}}处理为层边的同色系小型立体物件，局部精细，保持方块网格清晰。",
+          "en": "Render {{layer_subjects}} as small tonal sculptures at the block edges. Keep fine detail local and preserve the legibility of the voxel grid."
+        },
+        "check": {
+          "zh": "逐层查看物件可读性以及是否遮蔽网格。",
+          "en": "Check each object for legibility and verify it does not obscure the voxel grid."
+        }
+      },
+      {
+        "id": "R06",
+        "module": "B4",
+        "category": "style",
+        "section": "technical",
+        "variability": "conditional",
+        "priority": "must",
+        "verification": "candidate",
+        "evidence_ids": [
+          "E-06"
+        ],
+        "condition": {
+          "zh": "任务明确提供可比较的定量体积数值与单位。",
+          "en": "The task supplies comparable quantitative volumes and units."
+        },
+        "allowed_changes": [
+          {
+            "zh": "度量对象、正确单位、分组数量。",
+            "en": "Measured subject, correct unit and group count."
+          }
+        ],
+        "requires": [
+          "R01"
+        ],
+        "excludes": [],
+        "instruction": {
+          "zh": "按已核实的单位计算各层几何体积，标明单位与图例，并逐项核对数值对应。",
+          "en": "Compute each layer’s geometry from the verified unit. Include that unit in the legend and verify every value against its module."
+        },
+        "check": {
+          "zh": "核对单元数、体积、值和图例；缺少数据时保留未知。",
+          "en": "Verify cube counts, volumes, values and the legend. Mark unavailable data as unknown."
+        }
+      }
+    ]
+  }
+}
